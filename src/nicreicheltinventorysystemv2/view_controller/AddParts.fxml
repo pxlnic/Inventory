@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" fx:id="AddPartView" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nicreicheltinventorysystemv2.view_controller.AddPartsController">
+   <children>
+      <HBox alignment="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="75.0" prefWidth="500.0">
+         <children>
+            <Label text="Add Part">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Label>
+            <RadioButton fx:id="AddPartInHouseRadioBtn" mnemonicParsing="false" onAction="#AddPartsInHouseRadio" text="In-House">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="rdbGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="AddPartOutsourcedRadioBtn" mnemonicParsing="false" onAction="#AddPartsOutsourcedRadio" text="Outsourced" toggleGroup="$rdbGroup" />
+         </children>
+      </HBox>
+      <Button layoutX="422.0" layoutY="555.0" mnemonicParsing="false" onAction="#AddPartsCancelClicked" text="Cancel" />
+      <Label layoutX="57.0" layoutY="120.0" prefHeight="60.0" prefWidth="100.0" text="ID" />
+      <Label layoutX="57.0" layoutY="180.0" prefHeight="60.0" prefWidth="100.0" text="Name" />
+      <Label layoutX="57.0" layoutY="240.0" prefHeight="60.0" prefWidth="100.0" text="Inv" />
+      <Label layoutX="57.0" layoutY="300.0" prefHeight="60.0" prefWidth="100.0" text="Price/Cost" />
+      <Label layoutX="57.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Min" />
+      <Label fx:id="DynAddPartLabel" layoutX="57.0" layoutY="420.0" prefHeight="60.0" prefWidth="100.0" text="Label" />
+      <TextField fx:id="AddPartsIDField" layoutX="157.0" layoutY="135.0" />
+      <TextField fx:id="AddPartsNameField" layoutX="157.0" layoutY="195.0" />
+      <TextField fx:id="AddPartsInvField" layoutX="157.0" layoutY="255.0" />
+      <TextField fx:id="AddPartsPriceField" layoutX="157.0" layoutY="315.0" />
+      <TextField fx:id="AddPartsMinField" layoutX="157.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
+      <TextField fx:id="AddPartsDynField" layoutX="157.0" layoutY="435.0" />
+      <Label layoutX="285.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Max" />
+      <TextField fx:id="AddPartsMaxField" layoutX="344.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
+      <Button layoutX="348.0" layoutY="555.0" mnemonicParsing="false" onAction="#AddPartsSaveClicked" text="Save" />
+   </children>
+</AnchorPane>

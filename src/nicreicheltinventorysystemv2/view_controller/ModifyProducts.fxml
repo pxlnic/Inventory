@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="AnchorPane" fx:id="ModifyProductView" maxHeight="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nicreicheltinventorysystemv2.view_controller.ModifyProductsController">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <Label text="Modify Product" />
+               </children>
+            </HBox>
+            <AnchorPane layoutY="100.0" prefHeight="500.0" prefWidth="400.0">
+               <children>
+                  <VBox prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="50.0" text="ID">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin></Label>
+                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="360.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="45.0" text="Min">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField prefHeight="31.0" prefWidth="100.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TextField>
+                              <Label prefHeight="21.0" prefWidth="31.0" text="Max">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField prefHeight="31.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="180.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="45.0" text="Inv">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin></Label>
+                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="2.0" layoutY="90.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="46.0" text="Name">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin></Label>
+                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="270.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="45.0" text="Price">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin></Label>
+                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="404.0" prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutY="25.0" prefHeight="250.0" prefWidth="600.0">
+               <children>
+                  <TableView layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
+                     <children>
+                        <TextField>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#ModifyProductsSearchPartAddBtn" text="Search" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutY="200.0" prefHeight="50.0" prefWidth="600.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#ModifyProductsAddButton" text="Add" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <Line endX="580.0" endY="275.0" startX="20.0" startY="275.0" stroke="#0000007f" />
+            <AnchorPane layoutY="550.0" prefHeight="50.0" prefWidth="600.0">
+               <children>
+                  <Button layoutX="521.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModifyProductsCancelClicked" text="Cancel" />
+                  <Button layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModifyProductsSaveButtonClicked" text="Save" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="300.0" prefHeight="250.0" prefWidth="600.0">
+               <children>
+                  <TableView layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
+                     <children>
+                        <TextField>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#ModifyProductsSearchPartDeleteBtn" text="Search" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutY="200.0" prefHeight="50.0" prefWidth="600.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#ModifyProductsDeleteButton" text="Delete" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
