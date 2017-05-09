@@ -15,8 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import nicreicheltinventorysystemv2.NicReicheltInventorySystemV2;
+import nicreicheltinventorysystemv2.model.Part;
 
 /**
  *
@@ -24,8 +28,24 @@ import javafx.stage.Stage;
  */
 public class MainScreenController implements Initializable {
     
+    //Anchorpane
     @FXML
     private AnchorPane rootPane;
+    
+    //Part TableView Declarations
+     @FXML
+    private TableView<Part> MainPartsTableView;
+    @FXML
+    private TableColumn<Part, Integer> MainPartIDCol;
+    @FXML
+    private TableColumn<Part, String> MainPartNameCol;
+    @FXML
+    private TableColumn<Part, Integer> MainPartInvCol;
+    @FXML
+    private TableColumn<Part, Double> MainPartPriceCol;
+    
+    //Instance Variables
+    private NicReicheltInventorySystemV2 mainApp;
     
     //Main Screen Exit Button method.
     @FXML
@@ -119,11 +139,20 @@ public class MainScreenController implements Initializable {
         System.out.println("Delete Part clicked");
     }
     
-    //Control Methods to manipulate date
+    //Control Methods to manipulate data
     
     //Initialize Interface
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        //This will initialize the TableView as soon as the page loads
+        MainPartIDCol.setCellValueFactory(cellData -> cellData.getValue().partIDProperty().asObject());
+        MainPartNameCol.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
+        MainPartInvCol.setCellValueFactory(cellData -> cellData.getValue().partInvProperty().asObject());
+        MainPartPriceCol.setCellValueFactory(cellData -> cellData.getValue().partPriceProperty().asObject());
+    } 
+    
+//Set mainApp to the main application.
+    public void setMainApp(NicReicheltInventorySystemV2 mainApp) {
+        this.mainApp = mainApp;
+    }
 }

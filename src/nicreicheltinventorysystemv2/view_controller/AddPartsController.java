@@ -20,8 +20,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import nicreicheltinventorysystemv2.NicReicheltInventorySystemV2;
 import nicreicheltinventorysystemv2.model.InHousePart;
 import nicreicheltinventorysystemv2.model.OutsourcedPart;
+import nicreicheltinventorysystemv2.model.Inventory;
+
 
 /**
  * FXML Controller class
@@ -69,25 +72,26 @@ public class AddPartsController implements Initializable {
         
     //Construct part - parse data gathered above in constructor parameters
     //If statement used to determine if creating an Inhouse or Outsourced part
-        if(isOutsourced = false){
+        if(isOutsourced == false){
     //Create Inhouse part
-            InHousePart iPart;
-            iPart = new InHousePart(partName,Integer.parseInt(partID),Double.parseDouble(partPrice),Integer.parseInt(partInv),
+           InHousePart iPart;
+           iPart = new InHousePart(Integer.parseInt(partID), partName,Double.parseDouble(partPrice),Integer.parseInt(partInv),
                                    Integer.parseInt(partMin),Integer.parseInt(partMax),Integer.parseInt(partDyn));
+            
     //Console output to verify Inhouse part was added and validate part name
             System.out.println("Save Part Clicked - Inhouse part " + partName + " was added to parts list");
+            Inventory.addInvPart(iPart);
         }
         else{
     //Create Outsourced part
-            OutsourcedPart oPart;
-            oPart = new OutsourcedPart(partName,Integer.parseInt(partID),Double.parseDouble(partPrice),Integer.parseInt(partInv),
+            OutsourcedPart oPart = new OutsourcedPart(partName,Integer.parseInt(partID),Double.parseDouble(partPrice),Integer.parseInt(partInv),
                                       Integer.parseInt(partMin),Integer.parseInt(partMax),partDyn);
+            
     //Console output to verify Outsourced part was added and validate part name
             System.out.println("Save Part Clicked - Outsourced part " + partName + " was added to parts list");
+            Inventory.addInvPart(oPart);
         }
-        
-    //Add object to ArrayList of parts
-        
+
     //Close screen and reload main screen
     //Load Add Products Screen
         Parent partsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
@@ -115,8 +119,7 @@ public class AddPartsController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-
-
+    
     /**
      * Initializes the controller class.
      */

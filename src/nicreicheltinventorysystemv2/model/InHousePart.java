@@ -14,17 +14,17 @@ public class InHousePart extends Part {
     private int machineID;
     
     //Constructor
-    public InHousePart(String name, int partID, double price, int inStock, int min, int max, int machineID){
-        super(name, partID, price, inStock, min, max);
-        setMachineID(machineID);
-    }
-    
-    //Class methods specific to Inhouse parts
-    void setMachineID(int machineID){
+    public InHousePart(int partID, String name, double price, int inStock, int min, int max, int machineID){
+        super(partID, name, price, inStock, min, max);
         this.machineID = machineID;
     }
     
-    int getMachineID(){
+    //Class methods specific to Inhouse parts
+    public void setMachineID(int machineID){
+        this.machineID = machineID;
+    }
+    
+    public int getMachineID(){
         return machineID;
     }
 }

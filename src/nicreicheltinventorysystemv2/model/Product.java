@@ -6,6 +6,9 @@
 package nicreicheltinventorysystemv2.model;
 
 import java.util.ArrayList;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 
 
 /**
@@ -15,60 +18,61 @@ import java.util.ArrayList;
 public class Product {
     //Instance variables
     private ArrayList<Part> parts;
-    private int productID;
-    private String name;
-    private double price;
-    private int inStock;
-    private int min;
-    private int max;
+    private IntegerProperty productID;
+    private StringProperty name;
+    private DoubleProperty price;
+    private IntegerProperty inStock;
+    private IntegerProperty min;
+    private IntegerProperty max;
     
     //Contructor
     public Product(int productID, String name, double price, int inStock, int min, int max){
         parts = new ArrayList<>();
-        this.productID = productID;
-        this.name = name;
-        this.price = price;
-        this.inStock = inStock;
-        this.min = min;
-        this.max = max;
+        this.productID.set(productID);
+        this.name.set(name);
+        this.price.set(price);
+        this.inStock.set(inStock);
+        this.min.set(min);
+        this.max.set(max);
     }
     //Class methods to set and get product information
     void setProductID(int productID){
-        this.productID = productID;
+        this.productID.set(productID);
     }
     int getProductID(){
-        return productID;
+        return this.productID.get();
     }
     void setName(String name){
-        this.name = name;
+        this.name.set(name);
     }
     String getName(){
-        return name;
+        return this.name.get();
     }
     void setPrice(double price){
-        this.price = price;
+        this.price.set(price);
     }
     double getPrice(){
-        return price;
+        return this.price.get();
     }
     void setInStock(int inStock){
-        this.inStock = inStock;
+        this.inStock.set(inStock);
     }
     int getInStock(){
-        return inStock;
+        return this.inStock.get();
     }
     void setMin(int min){
-        this.min = min;
+        this.min.set(min);
     }
     int getMin(){
-        return min;
+        return this.min.get();
     }
     void setMax(int max){
-        this.max = max;
+        this.min.set(max);
     }
     int getMax(){
-        return max;
+        return this.max.get();
     }
+    
     //Methods for adding and removing parts from a product
     void addPart(Part part){
         parts.add(part);
@@ -100,7 +104,15 @@ public class Product {
         return lookupPart;
     }
     void updatePart(int ID){
-        
+        Part updatePart = null;
+        for(int i=0; i < parts.size(); i++){
+            if(ID == parts.get(i).getPartID()){
+                parts.set(i, updatePart);
+            }
+            else{
+                System.out.println("This product was not found");
+            }
+        }
     }
     
 }

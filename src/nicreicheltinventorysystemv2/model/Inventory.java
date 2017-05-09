@@ -14,11 +14,17 @@ import java.util.ArrayList;
 public class Inventory {
     //Instance Variables
     private ArrayList<Product> products;
+    static private ArrayList<Part> invParts = new ArrayList<Part>();
     
     //Class methods to manage inventory
     void addProduct(Product product){
         products.add(product);
     }
+    
+    public static void addInvPart(Part part){
+        invParts.add(part);
+    }
+    
     boolean removeProduct(int ID){
         boolean idFound = false;
         for(int i=0; i < products.size(); i++){

@@ -20,7 +20,7 @@ public class OutsourcedPart extends Part{
     }
     
     //Class methods specific to Inhouse parts
-    void setCompanyName(String companyName){
+    public void setCompanyName(String companyName){
         this.companyName = companyName;
     }
     
