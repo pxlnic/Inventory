@@ -5,26 +5,29 @@
  */
 package nicreicheltinventorysystemv2.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author nicre
  */
 public class OutsourcedPart extends Part{
     //Instance variable
-    private String companyName;
+    private StringProperty companyName;
     
     //Constructor
-    public OutsourcedPart(String name, int partID, double price, int inStock, int min, int max, String companyName){
-        super(name, partID, price, inStock, min, max);
-        setCompanyName(companyName);
+    public OutsourcedPart(){
+        super();
+        companyName = new SimpleStringProperty("Change this company name");
     }
     
     //Class methods specific to Inhouse parts
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
+    public void setPartCompanyName(String companyName){
+        this.companyName.set(companyName);
     }
     
-    String getcompanyName(){
+    StringProperty getcompanyName(){
         return companyName;
     }  
 }

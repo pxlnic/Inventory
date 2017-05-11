@@ -5,26 +5,29 @@
  */
 package nicreicheltinventorysystemv2.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
  *
  * @author nicre
  */
 public class InHousePart extends Part {
     //Instance variable
-    private int machineID;
+    private IntegerProperty machineID;
     
     //Constructor
-    public InHousePart(int partID, String name, double price, int inStock, int min, int max, int machineID){
-        super(partID, name, price, inStock, min, max);
-        this.machineID = machineID;
+    public InHousePart(){
+        super();
+        machineID = new SimpleIntegerProperty(-1);
     }
     
     //Class methods specific to Inhouse parts
-    public void setMachineID(int machineID){
-        this.machineID = machineID;
+    public void setPartMachineID(int machineID){
+        this.machineID.set(machineID);
     }
     
-    public int getMachineID(){
+    public IntegerProperty getMachineID(){
         return machineID;
     }
 }

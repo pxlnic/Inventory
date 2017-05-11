@@ -68,10 +68,10 @@
             </HBox>
             <TableView fx:id="MainPartsTableView" layoutX="20.0" layoutY="50.0" prefHeight="300.0" prefWidth="460.0">
               <columns>
-                <TableColumn fx:id="MainPartIDCol" prefWidth="75.0" text="Part ID" />
-                <TableColumn fx:id="MainPartNameCol" prefWidth="91.0" text="Part Name" />
-                  <TableColumn fx:id="MainPartInvCol" prefWidth="144.0" text="Inv Level" />
-                  <TableColumn fx:id="MainPartPriceCol" prefWidth="149.0" text="Price/Cost Per Unit" />
+                <TableColumn fx:id="MainPartIDCol" prefWidth="64.0" text="Part ID" />
+                <TableColumn fx:id="MainPartNameCol" prefWidth="166.0" text="Part Name" />
+                  <TableColumn fx:id="MainPartInvCol" prefWidth="84.0" text="Inv Level" />
+                  <TableColumn fx:id="MainPartPriceCol" prefWidth="145.0" text="Price Per Unit" />
               </columns>
             </TableView>
          </children>
@@ -80,10 +80,10 @@
          <children>
             <TableView fx:id="MainProductsTableView" layoutX="20.0" layoutY="50.0" prefHeight="300.0" prefWidth="460.0">
                <columns>
-                  <TableColumn prefWidth="99.0" text="Product ID" />
-                  <TableColumn prefWidth="112.0" text="Product Name" />
-                  <TableColumn prefWidth="98.0" text="Inv Level" />
-                  <TableColumn prefWidth="150.0" text="Price/Cost Per Unit" />
+                  <TableColumn fx:id="MainProductIDCol" prefWidth="99.0" text="Product ID" />
+                  <TableColumn fx:id="MainProductNameCol" prefWidth="136.0" text="Product Name" />
+                  <TableColumn fx:id="MainProductInvCol" prefWidth="74.0" text="Inv Level" />
+                  <TableColumn fx:id="MainProductPriceCol" prefWidth="150.0" text="Price Per Unit" />
                </columns>
             </TableView>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">

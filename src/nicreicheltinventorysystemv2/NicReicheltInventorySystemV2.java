@@ -7,15 +7,14 @@ package nicreicheltinventorysystemv2;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import nicreicheltinventorysystemv2.model.Part;
+import nicreicheltinventorysystemv2.model.InHousePart;
+import nicreicheltinventorysystemv2.model.Inventory;
+import static nicreicheltinventorysystemv2.model.Inventory.getPartInv;
+import nicreicheltinventorysystemv2.model.OutsourcedPart;
 import nicreicheltinventorysystemv2.view_controller.MainScreenController;
 
 
@@ -27,38 +26,61 @@ import nicreicheltinventorysystemv2.view_controller.MainScreenController;
 public class NicReicheltInventorySystemV2 extends Application {
 //Creation of the window for the stage and scene
     Stage window;
+    private AnchorPane MainScreenView;
     
-//Creation of Obersaveable list for Main Screen
-    private ObservableList<Part> partData = FXCollections.observableArrayList();
-    
-//Method to get part data for the observable arraylist
-    public ObservableList<Part> getPartData() {
-        return partData;
-    }
-    
-    /*public void showPartsOverview() throws IOException{
-    //Load parts overview
+    //RootLayout
+    public void initMainScreen() throws IOException{
+//Load parts overview
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(NicReicheltInventorySystemV2.class.getResource("view/MainScreen.fxml"));
+        loader.setLocation(NicReicheltInventorySystemV2.class.getResource("view_controller/MainScreen.fxml"));
         AnchorPane MainScreenView = (AnchorPane) loader.load();
     
+//Setting the scene
+        Scene scene = new Scene(MainScreenView);
+        
+//Showing the scene on the stage
+        window.setScene(scene);
+        window.show();
+    }
+    
+    public void showMainScreen() throws IOException{
+    // Load person overview.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(NicReicheltInventorySystemV2.class.getResource("view_controller/MainScreen.fxml"));
+        AnchorPane MainScreenView = (AnchorPane) loader.load();
+        
     //Give Controller access to the Main Application
         MainScreenController controller = loader.getController();
         controller.setMainApp(this);
-    }*/
+    }
     
     @Override
     public void start(Stage primaryStage) throws Exception {
 //Setting the stage
         window = primaryStage;
-        Parent mainScreen = FXMLLoader.load(getClass().getResource("view_controller/MainScreen.fxml"));
+        window.setTitle("Inventory Manager");
         
-//Setting the scene
-        Scene scene = new Scene(mainScreen);
+        initMainScreen();
+        showMainScreen();
         
-//Showing the scene on the stage
-        window.setScene(scene);
-        window.show();
+        InHousePart part1 = new InHousePart();
+        OutsourcedPart part2 = new OutsourcedPart();
+        part1.setPartID(1);
+        part1.setPartName("Snow Tire");
+        part1.setPartPrice(80.00);
+        part1.setPartInStock(12);
+        part1.setPartMin(8);
+        part1.setPartMax(50);
+        part2.setPartID(2);
+        part2.setPartName("Fuel Pump");
+        part2.setPartPrice(75.00);
+        part2.setPartInStock(15);
+        part2.setPartMin(5);
+        part2.setPartMax(100);
+        part2.setPartCompanyName("Mighty Parts");
+        Inventory.addInvPart(part1);
+        Inventory.addInvPart(part2);
+        System.out.println("Parts inventory size: " + getPartInv().size());
     }
     
     /**

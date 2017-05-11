@@ -8,6 +8,9 @@ package nicreicheltinventorysystemv2.model;
 import java.util.ArrayList;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
@@ -17,64 +20,88 @@ import javafx.beans.property.StringProperty;
  */
 public class Product {
     //Instance variables
-    private ArrayList<Part> parts;
-    private IntegerProperty productID;
-    private StringProperty name;
-    private DoubleProperty price;
-    private IntegerProperty inStock;
-    private IntegerProperty min;
-    private IntegerProperty max;
+    /*private ArrayList<Part> parts;*/
+    protected IntegerProperty productID;
+    protected StringProperty name;
+    protected DoubleProperty price;
+    protected IntegerProperty inStock;
+    protected IntegerProperty min;
+    protected IntegerProperty max;
     
     //Contructor
-    public Product(int productID, String name, double price, int inStock, int min, int max){
-        parts = new ArrayList<>();
-        this.productID.set(productID);
-        this.name.set(name);
-        this.price.set(price);
-        this.inStock.set(inStock);
-        this.min.set(min);
-        this.max.set(max);
+    public Product(){
+        /*parts = new ArrayList<>();*/
+        productID = new SimpleIntegerProperty(-1);
+        name = new SimpleStringProperty("Change this name");
+        price = new SimpleDoubleProperty(-1.00);
+        inStock = new SimpleIntegerProperty(-1);
+        min = new SimpleIntegerProperty(-1);
+        max = new SimpleIntegerProperty(-1);
     }
-    //Class methods to set and get product information
-    void setProductID(int productID){
+
+//Class methods
+//Product ID Setters and Getters
+    public void setProductID(int productID){
         this.productID.set(productID);
     }
-    int getProductID(){
+    public int getProductID(){
         return this.productID.get();
     }
-    void setName(String name){
+    public IntegerProperty productIDProperty(){
+        return productID;
+    }
+    
+//Product Name Setters and Getters
+    public void setProductName(String name){
         this.name.set(name);
     }
-    String getName(){
+    public String getProductName(){
         return this.name.get();
     }
-    void setPrice(double price){
+    public StringProperty productNameProperty(){
+        return name;
+    }
+
+//Product Price Setters and Getters
+    public void setProductPrice(double price){
         this.price.set(price);
     }
-    double getPrice(){
+    public double getProductPrice(){
         return this.price.get();
     }
-    void setInStock(int inStock){
+    public DoubleProperty productPriceProperty(){
+        return price;
+    }
+
+//Product Inventory Setters and Getters
+    public void setProductInStock(int inStock){
         this.inStock.set(inStock);
     }
-    int getInStock(){
+    public int getProductInStock(){
         return this.inStock.get();
     }
-    void setMin(int min){
+    public IntegerProperty productInvProperty(){
+        return inStock;
+    }
+
+//Product Min Setters and Getters
+    public void setProductMin(int min){
         this.min.set(min);
     }
-    int getMin(){
+    public int getProductMin(){
         return this.min.get();
     }
-    void setMax(int max){
+
+//Product Max Setters and Getters
+    public void setProductMax(int max){
         this.min.set(max);
     }
-    int getMax(){
+    public int getProductMax(){
         return this.max.get();
     }
     
-    //Methods for adding and removing parts from a product
-    void addPart(Part part){
+//Methods for adding and removing parts from a product
+    /*public void addPart(Part part){
         parts.add(part);
     }
     boolean removePart(int partID){
@@ -113,6 +140,6 @@ public class Product {
                 System.out.println("This product was not found");
             }
         }
-    }
+    }*/
     
 }

@@ -5,31 +5,48 @@
  */
 package nicreicheltinventorysystemv2.model;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author nicre
  */
 public class Inventory {
-    //Instance Variables
-    private ArrayList<Product> products;
-    static private ArrayList<Part> invParts = new ArrayList<Part>();
+//Observable ArrayLists for Parts and Products
+    private static ObservableList<Product> productsInv = FXCollections.observableArrayList();
+    private static ObservableList<Part> partsInv = FXCollections.observableArrayList();
+
+//Constructors
+    public Inventory() {
+}
     
-    //Class methods to manage inventory
-    void addProduct(Product product){
-        products.add(product);
+//Class methods to manage inventory
+//Get Part data
+    public static ObservableList<Part> getPartInv(){
+        return partsInv;
     }
-    
+
+//Add Part to Parts Observable ArrayList
     public static void addInvPart(Part part){
-        invParts.add(part);
+        partsInv.add(part);
+    }
+
+//Get Product data
+    public static ObservableList<Product> getProductInv(){
+        return productsInv;
+    }
+
+//Add Product to Product Observable ArrayList
+    public static void addInvProduct(Product product){
+        productsInv.add(product);
     }
     
     boolean removeProduct(int ID){
         boolean idFound = false;
-        for(int i=0; i < products.size(); i++){
-            if(ID == products.get(i).getProductID()){
-                products.remove(i);
+        for(int i=0; i < productsInv.size(); i++){
+            if(ID == productsInv.get(i).getProductID()){
+                productsInv.remove(i);
                 idFound = true;
             }
             else{
@@ -41,9 +58,9 @@ public class Inventory {
     }
     Product lookupProduct(int ID){
         Product lookupProduct = null;
-        for(int i=0; i < products.size(); i++){
-            if(ID == products.get(i).getProductID()){
-                lookupProduct = products.get(i);
+        for(int i=0; i < productsInv.size(); i++){
+            if(ID == productsInv.get(i).getProductID()){
+                lookupProduct = productsInv.get(i);
             }
             else{
                 System.out.println("This product was not found");

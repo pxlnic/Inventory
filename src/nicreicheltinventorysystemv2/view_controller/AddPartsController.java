@@ -45,22 +45,34 @@ public class AddPartsController implements Initializable {
     @FXML private TextField AddPartsMinField;
     @FXML private TextField AddPartsDynField;
     @FXML private TextField AddPartsMaxField;
-          private boolean isOutsourced;
+          
+    //Instance Variables
+    private boolean isOutsourced;
+    private NicReicheltInventorySystemV2 mainApp;
 
 //Controller Methods for buttons
     @FXML
     void AddPartsInHouseRadio(ActionEvent event) {
-        
+        System.out.println("Inhouse parts radio button clicked");
+        isOutsourced=false;
+        DynAddPartLabel.setText("Machine ID");
     }
     @FXML
     void AddPartsOutsourcedRadio(ActionEvent event) {
-
+        System.out.println("Outsourced parts radio button clicked");
+        isOutsourced=true;
+        DynAddPartLabel.setText("Comp. Name");
     }
+    
+//Saves new part to Inventory Parts Observable ArrayList
     @FXML
     void AddPartsSaveClicked(ActionEvent event) throws IOException {
-    
-    //Get data from text fields to add to constuctor for part being added
-        String partID = AddPartsIDField.getText();
+    //Saves the part to the Parts Observable ArrayList in Inventory
+    //Part ID is automatically set by using the Parts Observable ArrayList Size    
+        int partIDCount = Inventory.getPartInv().size();
+        int partID = partIDCount+1;
+        
+        //Get data from text fields to add to constuctor for part being added
         String partName = AddPartsNameField.getText();
         String partInv = AddPartsInvField.getText();
         String partPrice = AddPartsPriceField.getText();
@@ -68,15 +80,19 @@ public class AddPartsController implements Initializable {
         String partMax = AddPartsMaxField.getText();
         String partDyn = AddPartsDynField.getText();
         
-        isOutsourced=false;
-        
     //Construct part - parse data gathered above in constructor parameters
     //If statement used to determine if creating an Inhouse or Outsourced part
         if(isOutsourced == false){
     //Create Inhouse part
-           InHousePart iPart;
-           iPart = new InHousePart(Integer.parseInt(partID), partName,Double.parseDouble(partPrice),Integer.parseInt(partInv),
-                                   Integer.parseInt(partMin),Integer.parseInt(partMax),Integer.parseInt(partDyn));
+           InHousePart iPart = new InHousePart();
+    //Set part data with calls to setter methods.
+           iPart.setPartID(partID);
+           iPart.setPartName(partName);
+           iPart.setPartPrice(Double.parseDouble(partPrice));
+           iPart.setPartInStock(Integer.parseInt(partInv));
+           iPart.setPartMin(Integer.parseInt(partMin));
+           iPart.setPartMax(Integer.parseInt(partMax));
+           iPart.setPartMachineID(Integer.parseInt(partDyn));
             
     //Console output to verify Inhouse part was added and validate part name
             System.out.println("Save Part Clicked - Inhouse part " + partName + " was added to parts list");
@@ -84,14 +100,20 @@ public class AddPartsController implements Initializable {
         }
         else{
     //Create Outsourced part
-            OutsourcedPart oPart = new OutsourcedPart(partName,Integer.parseInt(partID),Double.parseDouble(partPrice),Integer.parseInt(partInv),
-                                      Integer.parseInt(partMin),Integer.parseInt(partMax),partDyn);
-            
+            OutsourcedPart oPart = new OutsourcedPart();
+    //Set part data with calls to setter methods.
+           oPart.setPartID(partID);
+           oPart.setPartName(partName);
+           oPart.setPartPrice(Double.parseDouble(partPrice));
+           oPart.setPartInStock(Integer.parseInt(partInv));
+           oPart.setPartMin(Integer.parseInt(partMin));
+           oPart.setPartMax(Integer.parseInt(partMax));
+           oPart.setPartCompanyName(partDyn);
     //Console output to verify Outsourced part was added and validate part name
             System.out.println("Save Part Clicked - Outsourced part " + partName + " was added to parts list");
             Inventory.addInvPart(oPart);
         }
-
+        
     //Close screen and reload main screen
     //Load Add Products Screen
         Parent partsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
@@ -104,6 +126,8 @@ public class AddPartsController implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    
+//Saves new part to Inventory Parts Observable ArrayList
     @FXML
     void AddPartsCancelClicked (ActionEvent event) throws IOException {
         System.out.println("Cancel Part Clicked");
@@ -125,6 +149,8 @@ public class AddPartsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        int partIDCount = Inventory.getPartInv().size()+1;
+        String partID = Integer.toString(partIDCount);
+        AddPartsIDField.setText("Part ID autoset to: " + partID);
     }    
 }

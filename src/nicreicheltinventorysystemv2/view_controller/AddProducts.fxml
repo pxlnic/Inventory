@@ -31,7 +31,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="AddProductsIDField" editable="false" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -45,7 +45,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="100.0">
+                              <TextField fx:id="AddProductsMinField" prefHeight="31.0" prefWidth="100.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -55,7 +55,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="100.0" />
+                              <TextField fx:id="AddProductsMaxField" prefHeight="31.0" prefWidth="100.0" />
                            </children>
                         </HBox>
                      </children>
@@ -69,7 +69,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="AddProductsInvField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -83,7 +83,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="AddProductsNameField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -97,7 +97,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="AddProductsPriceField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -112,8 +112,10 @@
                <children>
                   <TableView fx:id="AddProductsAddTableView" layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="AddProductPartIDCol" prefWidth="75.0" text="Part ID" />
+                        <TableColumn fx:id="AddProductPartNameCol" prefWidth="245.0" text="Part Name" />
+                        <TableColumn fx:id="AddProductInvLevelCol" prefWidth="110.0" text="Inv Level" />
+                        <TableColumn fx:id="AddProductPriceCol" prefWidth="129.0" text="Price Per Unit" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
@@ -136,7 +138,7 @@
             <Line endX="580.0" endY="275.0" startX="20.0" startY="275.0" stroke="#0000007f" />
             <AnchorPane layoutY="550.0" prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Button layoutX="521.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModifyProductsCancelClicked" text="Cancel" />
+                  <Button layoutX="521.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddProductsCancelClicked" text="Cancel" />
                   <Button layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddProductsSaveButtonClicked" text="Save" />
                </children>
             </AnchorPane>
@@ -144,8 +146,10 @@
                <children>
                   <TableView fx:id="AddProductsDeleteTableView" layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="AddProductCurrentPartIDCol" prefWidth="75.0" text="PartID" />
+                        <TableColumn fx:id="AddProductCurrentPartNameCol" prefWidth="243.0" text="Part Name" />
+                        <TableColumn fx:id="AddProductCurrentInvCol" prefWidth="119.0" text="Inv Level" />
+                        <TableColumn fx:id="AddProductCurrentPriceCol" prefWidth="122.0" text="Price Per Unit" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">

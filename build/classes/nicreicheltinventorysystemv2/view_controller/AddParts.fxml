@@ -35,8 +35,8 @@
       <Label layoutX="57.0" layoutY="240.0" prefHeight="60.0" prefWidth="100.0" text="Inv" />
       <Label layoutX="57.0" layoutY="300.0" prefHeight="60.0" prefWidth="100.0" text="Price/Cost" />
       <Label layoutX="57.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Min" />
-      <Label fx:id="DynAddPartLabel" layoutX="57.0" layoutY="420.0" prefHeight="60.0" prefWidth="100.0" text="Label" />
-      <TextField fx:id="AddPartsIDField" layoutX="157.0" layoutY="135.0" />
+      <Label fx:id="DynAddPartLabel" layoutX="57.0" layoutY="420.0" prefHeight="60.0" prefWidth="100.0" text="Machine ID" />
+      <TextField fx:id="AddPartsIDField" editable="false" layoutX="157.0" layoutY="135.0" />
       <TextField fx:id="AddPartsNameField" layoutX="157.0" layoutY="195.0" />
       <TextField fx:id="AddPartsInvField" layoutX="157.0" layoutY="255.0" />
       <TextField fx:id="AddPartsPriceField" layoutX="157.0" layoutY="315.0" />

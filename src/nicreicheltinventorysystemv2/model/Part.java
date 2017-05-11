@@ -7,6 +7,9 @@ package nicreicheltinventorysystemv2.model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -15,85 +18,81 @@ import javafx.beans.property.StringProperty;
  */
 public abstract class Part {
     //Instance variables for the part class
-    private StringProperty name;
-    private IntegerProperty partID;
-    private DoubleProperty price;
-    private IntegerProperty inStock;
-    private IntegerProperty min;
-    private IntegerProperty max;
+    protected StringProperty name;
+    protected IntegerProperty partID;
+    protected DoubleProperty price;
+    protected IntegerProperty inStock;
+    protected IntegerProperty min;
+    protected IntegerProperty max;
     
     //Contructor
-    public Part(int partID, String name, double price, int inStock, int min, int max){
-        this.partID.set(partID);
-        this.name.set(name);
-        this.price.set(price);
-        this.inStock.set(inStock);
-        this.min.set(min);
-        this.max.set(max);
+    public Part(){
+        partID = new SimpleIntegerProperty(-1);
+        name = new SimpleStringProperty("Change this name");
+        price = new SimpleDoubleProperty(-1.00);
+        inStock = new SimpleIntegerProperty(-1);
+        min = new SimpleIntegerProperty(-1);
+        max = new SimpleIntegerProperty(-1);
     }
     
-    //Class methods
-    public void setPartName(String name){
-        this.name.set(name);
-    }
-    
-    public String getPartName(){
-        return this.name.get();
-    }
-    
-    public StringProperty partNameProperty(){
-        return name;
-    }
-    
-    public void setPartPrice(double price){
-        this.price.set(price);
-    }
-    
-    public double getPartPrice(){
-        return this.price.get();
-    }
-    
-    public DoubleProperty partPriceProperty(){
-        return price;
-    }
-    
-    public void setPartInStock(int inStock){
-        this.inStock.set(inStock);
-    }
-    
-    public int getPartInStock(){
-        return this.inStock.get();
-    }
-    
-    public IntegerProperty partInvProperty(){
-        return inStock;
-    }
-    
-    public void setPartMin(int min){
-        this.min.set(min);
-    }
-    
-    public int getPartMin(){
-        return this.min.get();
-    }
-    
-    public void setPartMax(int max){
-        this.max.set(max);
-    }
-    
-    public int getPartMax(){
-        return this.max.get();
-    }
-    
+//Class methods
+//Part ID Getters and Setters
     public void setPartID(int partID){
         this.partID.set(partID);
     }
-    
     public int getPartID(){
         return this.partID.get();
     }
-    
     public IntegerProperty partIDProperty(){
         return partID;
+    }
+
+//Part Name Getters and Setters
+    public void setPartName(String name){
+        this.name.set(name);
+    }
+    public String getPartName(){
+        return this.name.get();
+    }
+    public StringProperty partNameProperty(){
+        return name;
+    }
+
+//Part Price Getters and Setters
+    public void setPartPrice(double price){
+        this.price.set(price);
+    }
+    public double getPartPrice(){
+        return this.price.get();
+    }
+    public DoubleProperty partPriceProperty(){
+        return price;
+    }
+
+//Part Inventory Getters and Setters
+    public void setPartInStock(int inStock){
+        this.inStock.set(inStock);
+    }
+    public int getPartInStock(){
+        return this.inStock.get();
+    }
+    public IntegerProperty partInvProperty(){
+        return inStock;
+    }
+
+//Part Min Getters and Setters
+    public void setPartMin(int min){
+        this.min.set(min);
+    }
+    public int getPartMin(){
+        return this.min.get();
+    }
+
+//Part Max Getters and Setters
+    public void setPartMax(int max){
+        this.max.set(max);
+    }
+    public int getPartMax(){
+        return this.max.get();
     }
 }
