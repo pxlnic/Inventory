@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  *
- * @author nicre
+ * @author Nic Reichelt
  */
 public class OutsourcedPart extends Part{
     //Instance variable
@@ -27,7 +27,7 @@ public class OutsourcedPart extends Part{
         this.companyName.set(companyName);
     }
     
-    StringProperty getcompanyName(){
-        return companyName;
+    public String getPartCompanyName(){
+        return this.companyName.get();
     }  
 }

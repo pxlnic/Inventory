@@ -22,12 +22,11 @@ public class InHousePart extends Part {
         machineID = new SimpleIntegerProperty(-1);
     }
     
-    //Class methods specific to Inhouse parts
+    //Setter and Getters specific to Inhouse parts
     public void setPartMachineID(int machineID){
         this.machineID.set(machineID);
     }
-    
-    public IntegerProperty getMachineID(){
-        return machineID;
+    public int getPartMachineID(){
+        return this.machineID.get();
     }
 }

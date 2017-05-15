@@ -48,7 +48,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField prefHeight="31.0" prefWidth="175.0" />
+                  <TextField fx:id="MainPartsSearchField" prefHeight="31.0" prefWidth="175.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0">
@@ -102,7 +102,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField prefHeight="31.0" prefWidth="175.0" />
+                  <TextField fx:id="MainProductsSearchField" prefHeight="31.0" prefWidth="175.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="500.0">

@@ -17,12 +17,12 @@
                   <Insets right="40.0" />
                </HBox.margin>
             </Label>
-            <RadioButton mnemonicParsing="false" onAction="#ModifyPartsInHouseRadio" text="In-House">
+            <RadioButton fx:id="ModifyPartsInHouseRadioButton" mnemonicParsing="false" onAction="#ModifyPartsInHouseRadio" text="In-House">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" onAction="#ModifyPartsOutsourcedRadio" text="Outsourced" />
+            <RadioButton fx:id="ModifyPartsOutsourcedRadioButton" mnemonicParsing="false" onAction="#ModifyPartsOutsourcedRadio" text="Outsourced" />
          </children>
       </HBox>
       <Button layoutX="422.0" layoutY="555.0" mnemonicParsing="false" onAction="#ModifyPartsCancelClicked" text="Cancel" />
@@ -30,16 +30,16 @@
       <Label layoutX="57.0" layoutY="180.0" prefHeight="60.0" prefWidth="100.0" text="Name" />
       <Label layoutX="57.0" layoutY="240.0" prefHeight="60.0" prefWidth="100.0" text="Inv" />
       <Label layoutX="57.0" layoutY="300.0" prefHeight="60.0" prefWidth="100.0" text="Price/Cost" />
-      <Label layoutX="57.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Max" />
-      <Label fx:id="DynAddPartLabel" layoutX="57.0" layoutY="420.0" prefHeight="60.0" prefWidth="100.0" text="Label" />
-      <TextField layoutX="157.0" layoutY="135.0" />
-      <TextField layoutX="157.0" layoutY="195.0" />
-      <TextField layoutX="157.0" layoutY="255.0" />
-      <TextField layoutX="157.0" layoutY="315.0" />
-      <TextField layoutX="157.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
-      <TextField layoutX="157.0" layoutY="435.0" />
+      <Label layoutX="57.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Min" />
+      <Label fx:id="DynModifyPartLabel" layoutX="57.0" layoutY="420.0" prefHeight="60.0" prefWidth="100.0" text="Machine ID" />
+      <TextField fx:id="ModifyPartsIDField" editable="false" layoutX="157.0" layoutY="135.0" />
+      <TextField fx:id="ModifyPartsNameField" layoutX="157.0" layoutY="195.0" />
+      <TextField fx:id="ModifyPartsInvField" layoutX="157.0" layoutY="255.0" />
+      <TextField fx:id="ModifyPartsPriceField" layoutX="157.0" layoutY="315.0" />
+      <TextField fx:id="ModifyPartsMinField" layoutX="157.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
+      <TextField fx:id="ModifyPartsDynField" layoutX="157.0" layoutY="435.0" />
       <Label layoutX="285.0" layoutY="360.0" prefHeight="60.0" prefWidth="100.0" text="Max" />
-      <TextField layoutX="344.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
+      <TextField fx:id="ModifyPartsMaxField" layoutX="344.0" layoutY="375.0" prefHeight="31.0" prefWidth="100.0" />
       <Button layoutX="350.0" layoutY="555.0" mnemonicParsing="false" onAction="#ModifyPartsSaveClicked" text="Save" />
    </children>
 </AnchorPane>

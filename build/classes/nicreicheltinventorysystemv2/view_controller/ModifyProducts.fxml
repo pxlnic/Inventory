@@ -30,7 +30,7 @@
                                  <HBox.margin>
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin></Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="ModifyProductsIDField" editable="false" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -44,7 +44,7 @@
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="100.0">
+                              <TextField fx:id="ModifyProductsMinField" prefHeight="31.0" prefWidth="100.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -54,7 +54,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="31.0" prefWidth="100.0" />
+                              <TextField fx:id="ModifyProductsMaxField" prefHeight="31.0" prefWidth="100.0" />
                            </children>
                         </HBox>
                      </children>
@@ -67,7 +67,7 @@
                                  <HBox.margin>
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin></Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="ModifyProductsInvField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -80,7 +80,7 @@
                                  <HBox.margin>
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin></Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="ModifyProductsNameField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -93,7 +93,7 @@
                                  <HBox.margin>
                                     <Insets left="20.0" right="30.0" />
                                  </HBox.margin></Label>
-                              <TextField prefHeight="31.0" prefWidth="200.0" />
+                              <TextField fx:id="ModifyProductsPriceField" prefHeight="31.0" prefWidth="200.0" />
                            </children>
                         </HBox>
                      </children>
@@ -106,15 +106,17 @@
          <children>
             <AnchorPane layoutY="25.0" prefHeight="250.0" prefWidth="600.0">
                <children>
-                  <TableView layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
+                  <TableView fx:id="ModifyProductAddTableView" layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="ModifyProductPartIDCol" prefWidth="92.0" text="Part ID" />
+                      <TableColumn fx:id="ModifyProductPartNameCol" prefWidth="226.0" text="Part Name" />
+                        <TableColumn fx:id="ModifyProductPartInvCol" minWidth="0.0" prefWidth="118.0" text="Inv. Level" />
+                        <TableColumn fx:id="ModifyProductPartPriceCol" prefWidth="123.0" text="Price Per Unit" />
                     </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
                      <children>
-                        <TextField>
+                        <TextField fx:id="ModifyProductAddPartSearchField" promptText="Search part to add...">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -138,15 +140,17 @@
             </AnchorPane>
             <AnchorPane layoutY="300.0" prefHeight="250.0" prefWidth="600.0">
                <children>
-                  <TableView layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
+                  <TableView fx:id="ModifyProductDeleteTableView" layoutX="20.0" layoutY="50.0" prefHeight="150.0" prefWidth="560.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="ModifyProductCurrentPartIDCol" prefWidth="86.0" text="Part ID" />
+                        <TableColumn fx:id="ModifyProductCurrentPartNameCol" prefWidth="230.0" text="Part Name" />
+                        <TableColumn fx:id="ModifyProductCurrentPartInvCol" prefWidth="116.0" text="Inv. Level" />
+                        <TableColumn fx:id="ModifyProductCurrentPartPriceCol" prefWidth="127.0" text="Price Per Unit" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
                      <children>
-                        <TextField>
+                        <TextField fx:id="ModifyProductDeletePartSearchField" promptText="Search part to remove...">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>

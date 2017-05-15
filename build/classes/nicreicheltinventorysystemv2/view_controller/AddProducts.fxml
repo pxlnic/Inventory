@@ -36,6 +36,48 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <VBox layoutX="2.0" layoutY="90.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="46.0" text="Name">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="AddProductsNameField" prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="180.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="45.0" text="Inv">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="AddProductsInvField" prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="270.0" prefHeight="90.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="45.0" text="Price">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="AddProductsPriceField" prefHeight="31.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                   <VBox layoutY="360.0" prefHeight="90.0" prefWidth="400.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
@@ -60,48 +102,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox layoutY="180.0" prefHeight="90.0" prefWidth="400.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="45.0" text="Inv">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="30.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="AddProductsInvField" prefHeight="31.0" prefWidth="200.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="2.0" layoutY="90.0" prefHeight="90.0" prefWidth="400.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="46.0" text="Name">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="30.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="AddProductsNameField" prefHeight="31.0" prefWidth="200.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox layoutY="270.0" prefHeight="90.0" prefWidth="400.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="45.0" text="Price">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="30.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="AddProductsPriceField" prefHeight="31.0" prefWidth="200.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
                </children>
             </AnchorPane>
          </children>
@@ -120,7 +120,7 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
                      <children>
-                        <TextField promptText="Search for part to add">
+                        <TextField fx:id="AddProductAddPartSearchField" promptText="Search part to add...">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -154,7 +154,7 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
                      <children>
-                        <TextField promptText="Search for part to delete">
+                        <TextField fx:id="AddProductDeletePartSearchField" promptText="Search part to remove...">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>

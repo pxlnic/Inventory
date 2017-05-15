@@ -63,15 +63,17 @@ public class NicReicheltInventorySystemV2 extends Application {
         initMainScreen();
         showMainScreen();
         
+    //Adds parts to the parts ObservableArraylist    
         InHousePart part1 = new InHousePart();
         OutsourcedPart part2 = new OutsourcedPart();
-        part1.setPartID(1);
+        part1.setPartID(Inventory.getPartIDCount());
         part1.setPartName("Snow Tire");
         part1.setPartPrice(80.00);
         part1.setPartInStock(12);
         part1.setPartMin(8);
         part1.setPartMax(50);
-        part2.setPartID(2);
+        part1.setPartMachineID(12);
+        part2.setPartID(Inventory.getPartIDCount());
         part2.setPartName("Fuel Pump");
         part2.setPartPrice(75.00);
         part2.setPartInStock(15);
@@ -80,7 +82,6 @@ public class NicReicheltInventorySystemV2 extends Application {
         part2.setPartCompanyName("Mighty Parts");
         Inventory.addInvPart(part1);
         Inventory.addInvPart(part2);
-        System.out.println("Parts inventory size: " + getPartInv().size());
     }
     
     /**
