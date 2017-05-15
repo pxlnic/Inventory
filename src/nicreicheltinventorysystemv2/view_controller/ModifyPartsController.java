@@ -102,7 +102,8 @@ public class ModifyPartsController implements Initializable {
 //Saves the modified part to the Inventory Parts List and returns to main screen
     @FXML void ModifyPartsSaveClicked (ActionEvent event) throws IOException {
     //Saves the part to the Parts Observable ArrayList in Inventory
-        
+        exceptionMessage = "";
+    
         //Get data from text fields to add to constuctor for part being added
         String partName = ModifyPartsNameField.getText();
         String partInv = ModifyPartsInvField.getText();

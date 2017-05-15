@@ -76,7 +76,7 @@ public class AddPartsController implements Initializable {
 //Saves new part to Inventory Parts Observable ArrayList
     @FXML void AddPartsSaveClicked(ActionEvent event) throws IOException {
     //Saves the part to the Parts Observable ArrayList in Inventory    
-        
+        exceptionMessage = "";
         //Get data from text fields to add to constuctor for part being added
         String partName = AddPartsNameField.getText();
         String partInv = AddPartsInvField.getText();
