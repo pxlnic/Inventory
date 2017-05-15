@@ -99,6 +99,7 @@ public class ModifyPartsController implements Initializable {
         }
     }
 
+//Saves the modified part to the Inventory Parts List and returns to main screen
     @FXML void ModifyPartsSaveClicked (ActionEvent event) throws IOException {
     //Saves the part to the Parts Observable ArrayList in Inventory
         
@@ -111,67 +112,78 @@ public class ModifyPartsController implements Initializable {
         String partDyn = ModifyPartsDynField.getText();
         
     //Exception handler
+        try{
     //min, max, inv, price, message
-        exceptionMessage = Part.isPartValid(Integer.parseInt(partMin), Integer.parseInt(partMax), Integer.parseInt(partInv), Double.parseDouble(partPrice), exceptionMessage);
-    //If Statement to throw error if min is greater then max
-        if(exceptionMessage.length()>0){
-        //Setup and show alert - Min > Max
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error Adding Part!");
-            alert.setHeaderText("Error!");
-            alert.setContentText(exceptionMessage);
-            alert.showAndWait();
-        }
-        else{
-    //Construct part - parse data gathered above in constructor parameters
-    //If statement used to determine if creating an Inhouse or Outsourced part
-            if(isOutsourced == false){
-            //Create Inhouse part
-                InHousePart iPart = new InHousePart();
-
-            //Set part data with calls to setter methods.
-                iPart.setPartID(partID);
-                iPart.setPartName(partName);
-                iPart.setPartPrice(Double.parseDouble(partPrice));
-                iPart.setPartInStock(Integer.parseInt(partInv));
-                iPart.setPartMin(Integer.parseInt(partMin));
-                iPart.setPartMax(Integer.parseInt(partMax));
-                iPart.setPartMachineID(Integer.parseInt(partDyn));
-            
-            //Console output to verify Inhouse part was added and validate part name
-                System.out.println("Update Part Clicked - Inhouse part " + partName + " was modified in parts list");
-                Inventory.updatePart(partIndex, iPart);
+            exceptionMessage = Part.isPartValid(partName, Integer.parseInt(partMin), Integer.parseInt(partMax), Integer.parseInt(partInv), Double.parseDouble(partPrice), exceptionMessage);
+        //If Statement to throw error if min is greater then max
+            if(exceptionMessage.length()>0){
+            //Setup and show alert - Min > Max
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText(exceptionMessage);
+                alert.showAndWait();
             }
             else{
-            //Create Outsourced part
-                OutsourcedPart oPart = new OutsourcedPart();
+        //Construct part - parse data gathered above in constructor parameters
+        //If statement used to determine if creating an Inhouse or Outsourced part
+                if(isOutsourced == false){
+                //Create Inhouse part
+                    InHousePart iPart = new InHousePart();
 
-            //Set part data with calls to setter methods.
-                oPart.setPartID(partID);
-                oPart.setPartName(partName);
-                oPart.setPartPrice(Double.parseDouble(partPrice));
-                oPart.setPartInStock(Integer.parseInt(partInv));
-                oPart.setPartMin(Integer.parseInt(partMin));
-                oPart.setPartMax(Integer.parseInt(partMax));
-                oPart.setPartCompanyName(partDyn);
+                //Set part data with calls to setter methods.
+                    iPart.setPartID(partID);
+                    iPart.setPartName(partName);
+                    iPart.setPartPrice(Double.parseDouble(partPrice));
+                    iPart.setPartInStock(Integer.parseInt(partInv));
+                    iPart.setPartMin(Integer.parseInt(partMin));
+                    iPart.setPartMax(Integer.parseInt(partMax));
+                    iPart.setPartMachineID(Integer.parseInt(partDyn));
 
-            //Console output to verify Outsourced part was added and validate part name
-                System.out.println("Update Part Clicked - Outsourced part " + partName + " was modified in parts list");
-                Inventory.updatePart(partIndex, oPart);;
+                //Console output to verify Inhouse part was added and validate part name
+                    System.out.println("Update Part Clicked - Inhouse part " + partName + " was modified in parts list");
+                    Inventory.updatePart(partIndex, iPart);
+                }
+                else{
+                //Create Outsourced part
+                    OutsourcedPart oPart = new OutsourcedPart();
+
+                //Set part data with calls to setter methods.
+                    oPart.setPartID(partID);
+                    oPart.setPartName(partName);
+                    oPart.setPartPrice(Double.parseDouble(partPrice));
+                    oPart.setPartInStock(Integer.parseInt(partInv));
+                    oPart.setPartMin(Integer.parseInt(partMin));
+                    oPart.setPartMax(Integer.parseInt(partMax));
+                    oPart.setPartCompanyName(partDyn);
+
+                //Console output to verify Outsourced part was added and validate part name
+                    System.out.println("Update Part Clicked - Outsourced part " + partName + " was modified in parts list");
+                    Inventory.updatePart(partIndex, oPart);;
+                }
+
+            //Load Main Screen
+                Parent modifyProductCancel = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+                Scene scene = new Scene(modifyProductCancel);
+
+            //Loads stage information from main file
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            //Load scene onto stage
+                window.setScene(scene);
+                window.show();
             }
-       
-        //Load Main Screen
-            Parent modifyProductCancel = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-            Scene scene = new Scene(modifyProductCancel);
-        
-        //Loads stage information from main file
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        //Load scene onto stage
-            window.setScene(scene);
-            window.show();
         }
-   }
+        catch(NumberFormatException e){
+            //Errors out when fields are left blank that require text
+                System.out.println("Fields are blank");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText("Fields cannot be left blank!");
+                alert.showAndWait();
+        }
+    }
     
     /**
      * Initializes the controller class.

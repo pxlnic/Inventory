@@ -96,27 +96,30 @@ public abstract class Part {
         return this.max.get();
     }
 
-//Part Exception Handling
-        //min, max, inv, price, message
-        public static String isPartValid(int min, int max, int inv, double price, String message){
-        
-    //Min cannot be negative
-        if(min<0){
-            message = message + ("The minimum allowed inventory cannot negative. Please re-enter.\n");
-        }
-    //Price cannot be negative
-        if(price<0){
-            message = message + ("The price cannot be negative. Please re-enter.\n");
-        }
-    //Min/Max Handler
-        if(min>max){
-            message = message + ("The part min cannot be great than max or part max cannot be lower tha min. Please re-enter.\n");
-        }
-    //Inventory - Min/Max Handler
-        if(inv<min || inv>max){
-            message = message + ("The part inventory cannot be lower than min or greater than max. Please re-enter.\n");
-        }
-    //Return message
-        return message;
+//Part Exception   
+        //name, min, max, inv, price, message
+        public static String isPartValid(String name, int min, int max, int inv, double price, String message){
+        //If name is blank
+            if(name == null){
+                message = message + ("-The Name field cannot be left blank! Please enter a Name!\n");
+            }
+        //Min cannot be negative
+            if(min<0){
+                message = message + ("-The minimum allowed inventory cannot negative. Please re-enter.\n");
+            }
+        //Price cannot be negative
+            if(price<0){
+                message = message + ("-The price cannot be negative. Please re-enter.\n");
+            }
+        //Min/Max Handler
+            if(min>max){
+                message = message + ("-The part min cannot be great than max or part max cannot be lower tha min. Please re-enter.\n");
+            }
+        //Inventory - Min/Max Handler
+            if(inv<min || inv>max){
+                message = message + ("-The part inventory cannot be lower than min or greater than max. Please re-enter.\n");
+            }
+        //Return message
+            return message;
     }
 }

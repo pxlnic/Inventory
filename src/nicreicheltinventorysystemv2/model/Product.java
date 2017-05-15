@@ -109,57 +109,19 @@ public class Product {
         return parts;
     }
     
-//Methods for adding and removing parts from a product
-    /*public void addPart(Part part){
-        parts.add(part);
-    }
-    boolean removePart(int partID){
-        boolean idFound = false;
-        for(int i=0; i < parts.size(); i++){
-            if(partID == parts.get(i).getPartID()){
-                parts.remove(i);
-                idFound = true;
-            }
-            else{
-                System.out.println("This product was not found");
-                idFound = false;
-            }
-        }
-        return idFound;
-    }
-    Part lookupPart(int ID){
-        Part lookupPart = null;
-        for(int i=0; i < parts.size(); i++){
-            if(ID == parts.get(i).getPartID()){
-                lookupPart = parts.get(i);
-            }
-            else{
-                System.out.println("This product was not found");
-            }
-        }
-        return lookupPart;
-    }
-    void updatePart(int ID){
-        Part updatePart = null;
-        for(int i=0; i < parts.size(); i++){
-            if(ID == parts.get(i).getPartID()){
-                parts.set(i, updatePart);
-            }
-            else{
-                System.out.println("This product was not found");
-            }
-        }
-    }*/
-    
 //Product Exception Handling
         //min, max, inv, price, parts, message
-        public static String isProductValid(int min, int max, int inv, double price, ObservableList<Part> parts, String message){
+    public static String isProductValid(String name, int min, int max, int inv, double price, ObservableList<Part> parts, String message){
+    //Instance variable to sum the total of part costs
         double sumParts = 0.00;
-    //Adding cost or parts
+    //Adding cost for parts
         for(int i=0;i < parts.size(); i++){
             sumParts = sumParts + parts.get(i).getPartPrice();
         }
-        
+    //Name cannot be empty
+        if(name.equals("")){
+            message = message + ("-The Name field cannot be empty! Please enter a Name for product!\n");
+        }
     //Min cannot be negative
         if(min<0){
             message = message + ("-The minimum allowed inventory cannot negative. Please re-enter.\n");

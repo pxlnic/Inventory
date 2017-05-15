@@ -86,66 +86,76 @@ public class AddPartsController implements Initializable {
         String partDyn = AddPartsDynField.getText();
         
     //Exception handler
-    //min, max, inv, price, message
-        exceptionMessage = Part.isPartValid(Integer.parseInt(partMin), Integer.parseInt(partMax), Integer.parseInt(partInv), Double.parseDouble(partPrice), exceptionMessage);
-    //If Statement to throw error if min is greater then max
-        if(exceptionMessage.length()>0){
-        //Setup and show alert - Min > Max
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Error Adding Part!");
-            alert.setHeaderText("Error!");
-            alert.setContentText(exceptionMessage);
-            alert.showAndWait();
-        }
-        else{
-    //Construct part - parse data gathered above in constructor parameters
-    //If statement used to determine if creating an Inhouse or Outsourced part
-            if(isOutsourced == false){
-            //Create Inhouse part
-                InHousePart iPart = new InHousePart();
-
-            //Set part data with calls to setter methods.
-                iPart.setPartID(partID);
-                iPart.setPartName(partName);
-                iPart.setPartPrice(Double.parseDouble(partPrice));
-                iPart.setPartInStock(Integer.parseInt(partInv));
-                iPart.setPartMin(Integer.parseInt(partMin));
-                iPart.setPartMax(Integer.parseInt(partMax));
-                iPart.setPartMachineID(Integer.parseInt(partDyn));
-            
-            //Console output to verify Inhouse part was added and validate part name
-                System.out.println("Save Part Clicked - Inhouse part " + partName + " was added to parts list");
-                Inventory.addInvPart(iPart);
+        try{
+            exceptionMessage = Part.isPartValid(partName, Integer.parseInt(partMin), Integer.parseInt(partMax), Integer.parseInt(partInv), Double.parseDouble(partPrice), exceptionMessage);
+        //If Statement to throw error if min is greater then max
+            if(exceptionMessage.length()>0){
+            //Setup and show alert - Remaining errors
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText(exceptionMessage);
+                alert.showAndWait();
             }
             else{
-            //Create Outsourced part
-                OutsourcedPart oPart = new OutsourcedPart();
+        //Construct part - parse data gathered above in constructor parameters
+        //If statement used to determine if creating an Inhouse or Outsourced part
+                if(isOutsourced == false){
+                //Create Inhouse part
+                    InHousePart iPart = new InHousePart();
 
-            //Set part data with calls to setter methods.
-                oPart.setPartID(partID);
-                oPart.setPartName(partName);
-                oPart.setPartPrice(Double.parseDouble(partPrice));
-                oPart.setPartInStock(Integer.parseInt(partInv));
-                oPart.setPartMin(Integer.parseInt(partMin));
-                oPart.setPartMax(Integer.parseInt(partMax));
-                oPart.setPartCompanyName(partDyn);
+                //Set part data with calls to setter methods.
+                    iPart.setPartID(partID);
+                    iPart.setPartName(partName);
+                    iPart.setPartPrice(Double.parseDouble(partPrice));
+                    iPart.setPartInStock(Integer.parseInt(partInv));
+                    iPart.setPartMin(Integer.parseInt(partMin));
+                    iPart.setPartMax(Integer.parseInt(partMax));
+                    iPart.setPartMachineID(Integer.parseInt(partDyn));
 
-            //Console output to verify Outsourced part was added and validate part name
-                System.out.println("Save Part Clicked - Outsourced part " + partName + " was added to parts list");
-                Inventory.addInvPart(oPart);
+                //Console output to verify Inhouse part was added and validate part name
+                    System.out.println("Save Part Clicked - Inhouse part " + partName + " was added to parts list");
+                    Inventory.addInvPart(iPart);
+                }
+                else{
+                //Create Outsourced part
+                    OutsourcedPart oPart = new OutsourcedPart();
+
+                //Set part data with calls to setter methods.
+                    oPart.setPartID(partID);
+                    oPart.setPartName(partName);
+                    oPart.setPartPrice(Double.parseDouble(partPrice));
+                    oPart.setPartInStock(Integer.parseInt(partInv));
+                    oPart.setPartMin(Integer.parseInt(partMin));
+                    oPart.setPartMax(Integer.parseInt(partMax));
+                    oPart.setPartCompanyName(partDyn);
+
+                //Console output to verify Outsourced part was added and validate part name
+                    System.out.println("Save Part Clicked - Outsourced part " + partName + " was added to parts list");
+                    Inventory.addInvPart(oPart);
+                }
+
+            //Close screen and reload main screen
+            //Load Main Screen
+                Parent partsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+                Scene scene = new Scene(partsSave);
+
+            //Loads stage information from main file
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            //Load scene onto stage
+                window.setScene(scene);
+                window.show();
             }
-        
-        //Close screen and reload main screen
-        //Load Main Screen
-            Parent partsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-            Scene scene = new Scene(partsSave);
-        
-        //Loads stage information from main file
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        //Load scene onto stage
-            window.setScene(scene);
-            window.show();
+        }
+        catch(NumberFormatException e){
+            //Errors out when fields are left blank that require text
+                System.out.println("Fields are blank");
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText("Fields cannot be left blank!");
+                alert.showAndWait();
         }
     }
     

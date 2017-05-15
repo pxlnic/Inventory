@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import nicreicheltinventorysystemv2.NicReicheltInventorySystemV2;
+import nicreicheltinventorysystemv2.model.Inventory;
 import nicreicheltinventorysystemv2.model.Part;
 import static nicreicheltinventorysystemv2.model.Inventory.getPartInv;
 import static nicreicheltinventorysystemv2.model.Inventory.getProductInv;
@@ -184,7 +186,35 @@ public class MainScreenController implements Initializable {
 //Main Screen Search Product Button handler
     @FXML void MainSearchProductsBtn(ActionEvent event) throws IOException{
         System.out.println("Search Products clicked");
+        
+        String searchProd = MainProductsSearchField.getText();
+        int prodIndex = -1;
+        
+    //If statement validates if search term is a valid Product ID or Name and returns the product ID or an error
+        if(Inventory.lookupProduct(searchProd) == -1){
+        //Alert that part is a part of a product and cannot be removed
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Search Error!");
+            alert.setHeaderText("Product not found");
+            alert.setContentText("The search term entered does not match any Product!");
+            alert.showAndWait();
+        }
+        else{
+            prodIndex = Inventory.lookupProduct(searchProd);
+            Product tempProd = Inventory.getProductInv().get(prodIndex);
+
+        //New Observable ArrayList created to hold the search value]
+            ObservableList<Product> tempProdList = FXCollections.observableArrayList();
+            tempProdList.add(tempProd);
+            MainProductsTableView.setItems(tempProdList);
+        }
     }
+
+//Clears the Parts search box and puts the TableView back to Inventory Parts List
+    @FXML void MainProductsClearBtn(ActionEvent event) throws IOException{
+    updateProductTableView();
+    MainProductsSearchField.setText("");
+}
 
 //Main Screen Delete Product Button handler
     @FXML void MainDeleteProductsClick(ActionEvent event) throws IOException{
@@ -218,9 +248,35 @@ public class MainScreenController implements Initializable {
     @FXML void MainPartsSearchBtn(ActionEvent event) throws IOException{
         System.out.println("Search Parts clicked");
         
+        String searchPart = MainPartsSearchField.getText();
+        int partIndex = -1;
         
+    //If statement validates if search term is a valid Product ID or Name and returns the product ID or an error
+        if(Inventory.lookupPart(searchPart) == -1){
+        //Alert that part is a part of a product and cannot be removed
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Search Error!");
+            alert.setHeaderText("Part not found");
+            alert.setContentText("The search term entered does not match any Part!");
+            alert.showAndWait();
+        }
+        else{
+            partIndex = Inventory.lookupPart(searchPart);
+            Part tempPart = Inventory.getPartInv().get(partIndex);
+
+        //New Observable ArrayList created to hold the search value]
+            ObservableList<Part> tempProdList = FXCollections.observableArrayList();
+            tempProdList.add(tempPart);
+            MainPartsTableView.setItems(tempProdList);
+        }        
     }
 
+//Clears the Products search box and puts the TableView back to Inventory Products List
+    @FXML void MainPartsClearBtn(ActionEvent event) throws IOException{
+    updatePartTableView();
+    MainPartsSearchField.setText("");
+    }
+    
 //Main Screen Delete Part Button handler
     @FXML void MainDeletePartsClick(ActionEvent event) throws IOException{
    //Console output confirm delete button was clicked

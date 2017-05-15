@@ -25,6 +25,8 @@ public class Inventory {
 }
     
 //Class methods to manage inventory
+    
+//***PART INVENTORY HANDLING***
 //Get Part data
     public static ObservableList<Part> getPartInv(){
         return partsInv;
@@ -50,7 +52,56 @@ public class Inventory {
         partIDCount++;
         return partIDCount;
     }
+    
+//Validate part is not part of a product
+    public static boolean validatePartDelete(Part part){
+        boolean isFound = false;
+    
+    //Determines if the part is contained within any products
+        for(int i = 0; i < productsInv.size(); i++){
+            if(productsInv.get(i).getProductParts().contains(part)){
+                isFound = true;
+            }
+        }
+    //Returns isFound statement
+    //If isFound is false then part can be removed.
+        return isFound;
+    }
 
+//Lookup product in search boxes
+    public static int lookupPart(String searchTerm){
+        boolean isFound = false;
+        int index = 0;
+
+    //If statement to determin if value in searchTerm is a string or an int.
+        if(isInteger(searchTerm)){//if valud is Int
+            for(int i=0; i < partsInv.size(); i++){
+                if(Integer.parseInt(searchTerm) == partsInv.get(i).getPartID()){
+                    index = i;
+                    isFound = true;
+                }
+            }
+        }
+        else{//If value is String
+            for(int i=0; i<partsInv.size(); i++){
+                if (searchTerm.equals(partsInv.get(i).getPartName())) {
+                    index = i;
+                    isFound = true;
+                }
+            }
+        }
+
+    //If statement to validate if product was found
+        if(isFound = true){
+            return index;
+        }
+        else{
+            System.out.println("No parts found matching criteria");
+            return -1;
+        }
+    }
+
+//***PRODUCT INVENTORY HANDLING***
 //Get Product data
     public static ObservableList<Product> getProductInv(){
         return productsInv;
@@ -71,32 +122,22 @@ public class Inventory {
         productIDCount++;
         return productIDCount;
     }
-    
-    public boolean isInteger(String input) {
-    try { //Try to make the input into an integer
-        Integer.parseInt( input );
-        return true; //Return true if it works
-    }
-    catch( Exception e ) { 
-        return false; //If it doesn't work return false
-    }
-}
 
 //Lookup product in search boxes
-    int lookupProduct(String searchTerm){
+    public static int lookupProduct(String searchTerm){
         boolean isFound = false;
         int index = 0;
 
     //If statement to determin if value in searchTerm is a string or an int.
-        if(isInteger(searchTerm)){
+        if(isInteger(searchTerm)){//if valud is Int
             for(int i=0; i < productsInv.size(); i++){
                 if(Integer.parseInt(searchTerm) == productsInv.get(i).getProductID()){
                     index = i;
                     isFound = true;
+                }
             }
         }
-        }
-        else{
+        else{//If value is String
             for(int i=0; i<productsInv.size(); i++){
                 if (searchTerm.equals(productsInv.get(i).getProductName())) {
                     index = i;
@@ -110,27 +151,26 @@ public class Inventory {
             return index;
         }
         else{
-            System.out.println("No parts found matching criteria");
+            System.out.println("No products found matching criteria");
             return -1;
         }
     }
+    
+//Update product in Inventory Products Array List
     public static void updateProduct(int index, Product product){
         productsInv.set(index, product);
     }
-    
-//Validate part is not part of a product
-    public static boolean validatePartDelete(Part part){
-        boolean isFound = false;
-    
-    //Determines if the part is contained within any products
-        for(int i = 0; i < productsInv.size(); i++){
-            if(productsInv.get(i).getProductParts().contains(part)){
-                isFound = true;
-            }
-        }
-    //Returns isFound statement
-    //If isFound is false then part can be removed.
-        return isFound;
+
+//Validate if item is an itenger or not
+    public static boolean isInteger(String input) {
+    try { //Try to make the input into an integer
+        Integer.parseInt( input );
+        return true; //Return true if it works
     }
+    catch( Exception e ) { 
+        return false; //If it doesn't work return false
+    }
+}
+
     
 }

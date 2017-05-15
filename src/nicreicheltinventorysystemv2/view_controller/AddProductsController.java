@@ -70,12 +70,40 @@ public class AddProductsController implements Initializable {
     }
     
 //FXML Button Handling
+//Searches all parts to find search term
     @FXML void AddProductsSearchPartAddBtn(ActionEvent event) {
-    //Searches for the Part ID/Name to be added to the Current Parts TableView from all Parts.
-    //Pull text from the Add Search Box
-        Part part = AddProductsAddTableView.getSelectionModel().getSelectedItem();
+        System.out.println("Search Parts clicked");
+        
+        String searchPart = AddProductAddPartSearchField.getText();
+        int partIndex = -1;
+        
+    //If statement validates if search term is a valid Product ID or Name and returns the product ID or an error
+        if(Inventory.lookupPart(searchPart) == -1){
+        //Alert that part is a part of a product and cannot be removed
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Error!");
+            alert.setHeaderText("Part not found");
+            alert.setContentText("The search term entered does not match any Part!");
+            alert.showAndWait();
+        }
+        else{
+            partIndex = Inventory.lookupPart(searchPart);
+            Part tempPart = Inventory.getPartInv().get(partIndex);
+
+        //New Observable ArrayList created to hold the search value]
+            ObservableList<Part> tempProdList = FXCollections.observableArrayList();
+            tempProdList.add(tempPart);
+            AddProductsAddTableView.setItems(tempProdList);
+        }  
     }
     
+//Clears the add parts search box and reset Tableview
+    @FXML void AddProductsSearchPartClearBtn(ActionEvent event) {
+        updatePartTableView();
+        AddProductAddPartSearchField.setText("");
+    }
+
+//Adds selected part to the current parts list
     @FXML void AddProductsAddPartBtn(ActionEvent event) {
     //Adds selected Part to Current Parts Observable ArrayList to populate Observable ArrayList for new product
         Part part = AddProductsAddTableView.getSelectionModel().getSelectedItem();
@@ -84,13 +112,46 @@ public class AddProductsController implements Initializable {
         System.out.println("New part added - Part " + part.getPartName() + " was added.");
     }
 
+//Searches the current parts list to find search term
     @FXML void AddProductsSearchPartDeleteBtn(ActionEvent event) {
-    //Searches for the Part ID/Name to be deleted from the Current Parts Observable ArrayList
-    //Pull text from the Delete Search Box
-        Part part = AddProductsDeleteTableView.getSelectionModel().getSelectedItem();
+        System.out.println("Search Parts clicked");
+        
+        String searchPart = AddProductDeletePartSearchField.getText();
+        int partIndex = -1;
+        
+    //If statement validates if search term is a valid Product ID or Name and returns the product ID or an error
+        if(Inventory.lookupPart(searchPart) == -1){
+        //Alert that part is a part of a product and cannot be removed
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search Error!");
+            alert.setHeaderText("Part not found");
+            alert.setContentText("The search term entered does not match any Part!");
+            alert.showAndWait();
+        }
+        else{
+            partIndex = Inventory.lookupPart(searchPart);
+            Part tempPart = Inventory.getPartInv().get(partIndex);
 
+        //New Observable ArrayList created to hold the search value]
+            ObservableList<Part> tempProdList = FXCollections.observableArrayList();
+            tempProdList.add(tempPart);
+            AddProductsDeleteTableView.setItems(tempProdList);
+        }  
+    }
+
+//Clears the delete parts search box and resets TablView
+    @FXML void AddProductsSearchPartDeleteClearBtn(ActionEvent event) {
+        updateCurrentPartTableView();
+        AddProductDeletePartSearchField.setText("");
+    }
+
+//Deletes selected part from the current parts list
+    @FXML void AddProductsDeletePartBtn(ActionEvent event) {
+    //Deletes selected Part from the Current Parts Observable ArrayList
         System.out.println("Delete Current Part Clicked");
 
+        Part part = AddProductsDeleteTableView.getSelectionModel().getSelectedItem();
+        
     //Confirmation alert to validate user wants to delete the product
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
@@ -105,16 +166,6 @@ public class AddProductsController implements Initializable {
         }else{
             System.out.println("You clicked cancel!");
         }
-        
-        currentParts.remove(part);
-    }
-    
-    @FXML void AddProductsDeletePartBtn(ActionEvent event) {
-    //Deletes selected Part from the Current Parts Observable ArrayList
-        Part part = AddProductsDeleteTableView.getSelectionModel().getSelectedItem();
-        currentParts.remove(part);
-        updatePartTableView();
-        System.out.println("Part removed - Part " + part.getPartName() + " was removed.");
     }
 
 //Saves the new product to the Products Inventory Observable ArrayList
@@ -130,47 +181,61 @@ public class AddProductsController implements Initializable {
         String productMax = AddProductsMaxField.getText();
         
    //Exception handler
-    //min, max, inv, price, message
-        exceptionMessage = Product.isProductValid(Integer.parseInt(productMin), Integer.parseInt(productMax), Integer.parseInt(productInv), 
-                                                  Double.parseDouble(productPrice),currentParts, exceptionMessage);
-    //If Statement to throw error if min is greater then max
-        if(exceptionMessage.length()>0){
+        try{
+        //min, max, inv, price, message
+            exceptionMessage = Product.isProductValid(productName, Integer.parseInt(productMin), Integer.parseInt(productMax), Integer.parseInt(productInv), 
+                                                      Double.parseDouble(productPrice),currentParts, exceptionMessage);
+        //If Statement to throw error if min is greater then max
+            if(exceptionMessage.length()>0){
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error Adding Product!");
-            alert.setHeaderText("Error!");
-            alert.setContentText(exceptionMessage);
-            alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Product!");
+                alert.setHeaderText("Error!");
+                alert.setContentText(exceptionMessage);
+                alert.showAndWait();
+
+                exceptionMessage = "";
+            }
+            else{
+                System.out.println("Product name: "+ productName);
+            //Construct part - parse data gathered above in constructor parameters
+                Product newProduct = new Product();
+
+            //Set part data with calls to setter methods.
+                newProduct.setProductID(productID);
+                newProduct.setProductName(productName);
+                newProduct.setProductPrice(Double.parseDouble(productPrice));
+                newProduct.setProductInStock(Integer.parseInt(productInv));
+                newProduct.setProductMin(Integer.parseInt(productMin));
+                newProduct.setProductMax(Integer.parseInt(productMax));
+                newProduct.setProductParts(currentParts);
+
+            //Console output to verify Inhouse part was added and validate part name
+                System.out.println("Save Product Clicked - Product " + productName + " was added to products list");
+                System.out.println("There are " + currentParts.size() + " parts in this product.");
+                Inventory.addInvProduct(newProduct);
+
+            //Close screen and reload main screen
+            //Load Main Screen
+                Parent productsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+                Scene scene = new Scene(productsSave);
+
+            //Loads stage information from main file
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            //Load scene onto stage
+                window.setScene(scene);
+                window.show();
+            }
         }
-        else{
-        //Construct part - parse data gathered above in constructor parameters
-            Product newProduct = new Product();
-    
-        //Set part data with calls to setter methods.
-            newProduct.setProductID(productID);
-            newProduct.setProductName(productName);
-            newProduct.setProductPrice(Double.parseDouble(productPrice));
-            newProduct.setProductInStock(Integer.parseInt(productInv));
-            newProduct.setProductMin(Integer.parseInt(productMin));
-            newProduct.setProductMax(Integer.parseInt(productMax));
-            newProduct.setProductParts(currentParts);
-            
-        //Console output to verify Inhouse part was added and validate part name
-            System.out.println("Save Product Clicked - Product " + productName + " was added to products list");
-            System.out.println("There are " + currentParts.size() + " parts in this product.");
-            Inventory.addInvProduct(newProduct);
-        
-        //Close screen and reload main screen
-        //Load Main Screen
-            Parent productsSave = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-            Scene scene = new Scene(productsSave);
-        
-        //Loads stage information from main file
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        
-        //Load scene onto stage
-            window.setScene(scene);
-            window.show();
+        catch(NumberFormatException e){
+            //Errors out when fields are left blank that require text
+                System.out.println("Fields are blank");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText("Fields cannot be left blank!");
+                alert.showAndWait();
         }
     }
     

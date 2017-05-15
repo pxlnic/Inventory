@@ -125,7 +125,11 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartAddBtn" text="Search" />
+                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartAddBtn" text="Search">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartClearBtn" text="Clear" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutY="200.0" prefHeight="50.0" prefWidth="600.0">
@@ -159,7 +163,11 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartDeleteBtn" text="Search" />
+                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartDeleteBtn" text="Search">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#AddProductsSearchPartDeleteClearBtn" text="Clear" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutY="200.0" prefHeight="50.0" prefWidth="600.0">

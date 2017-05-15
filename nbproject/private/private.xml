@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/NicReicheltInventorySystemV2.java</file>
+            <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/model/Part.java</file>
             <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/view_controller/AddProductsController.java</file>
             <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/view_controller/AddPartsController.java</file>
             <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/view_controller/MainScreenController.java</file>
             <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/view_controller/ModifyPartsController.java</file>
-            <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/model/Inventory.java</file>
+            <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/model/Product.java</file>
             <file>file:/C:/Users/nicre/Desktop/Desktop%20Items/Folders/School/C482%20-%20Software%20I/Java%20Projects/NicReicheltInventorySystemV2/src/nicreicheltinventorysystemv2/view_controller/ModifyProductsController.java</file>
         </group>
     </open-files>

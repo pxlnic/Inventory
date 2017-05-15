@@ -41,14 +41,22 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="200.0" prefHeight="50.0" prefWidth="300.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" layoutX="110.0" prefHeight="50.0" prefWidth="390.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <TextField fx:id="MainPartsSearchField" prefHeight="31.0" prefWidth="187.0" promptText="Search Parts...">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></TextField>
                   <Button mnemonicParsing="false" onAction="#MainPartsSearchBtn" text="Search">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="MainPartsSearchField" prefHeight="31.0" prefWidth="175.0" />
+                  <Button mnemonicParsing="false" onAction="#MainPartsClearBtn" text="Clear">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0">
@@ -95,14 +103,22 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="200.0" prefHeight="50.0" prefWidth="300.0">
+            <HBox alignment="CENTER" layoutX="111.0" prefHeight="50.0" prefWidth="390.0">
                <children>
+                  <TextField fx:id="MainProductsSearchField" prefHeight="31.0" prefWidth="180.0" promptText="Search Products...">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></TextField>
                   <Button mnemonicParsing="false" onAction="#MainSearchProductsBtn" text="Search">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="MainProductsSearchField" prefHeight="31.0" prefWidth="175.0" />
+                  <Button mnemonicParsing="false" onAction="#MainProductsClearBtn" text="Clear">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="500.0">
