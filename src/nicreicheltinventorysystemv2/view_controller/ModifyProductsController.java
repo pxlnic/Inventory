@@ -171,7 +171,6 @@ public class ModifyProductsController implements Initializable {
 //Save product to Inventory Proucts List
     @FXML void ModifyProductsSaveButtonClicked(ActionEvent event) throws IOException {
     //Saves the product to the Products Observable ArrayList in Inventory
-        exceptionMessage = "";
 
     //Get data from text fields to add to constuctor for part being added
         String productName = ModifyProductsNameField.getText();

@@ -119,7 +119,7 @@ public class Product {
             sumParts = sumParts + parts.get(i).getPartPrice();
         }
     //Name cannot be empty
-        if(name.isEmpty()){
+        if(name.equals("")){
             message = message + ("-The Name field cannot be empty! Please enter a Name for product!\n");
         }
     //Min cannot be negative

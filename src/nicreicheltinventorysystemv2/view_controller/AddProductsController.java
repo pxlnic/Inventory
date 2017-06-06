@@ -171,7 +171,6 @@ public class AddProductsController implements Initializable {
 //Saves the new product to the Products Inventory Observable ArrayList
     @FXML void AddProductsSaveButtonClicked(ActionEvent event) throws IOException {
     //Saves the product to the Products Observable ArrayList in Inventory
-        exceptionMessage = "";
     //Product ID is automatically set by using the Product Observable ArrayList Size
 
     //Get data from text fields to add to constuctor for part being added

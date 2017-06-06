@@ -100,7 +100,7 @@ public abstract class Part {
         //name, min, max, inv, price, message
         public static String isPartValid(String name, int min, int max, int inv, double price, String message){
         //If name is blank
-            if(name.isEmpty()){
+            if(name == null){
                 message = message + ("-The Name field cannot be left blank! Please enter a Name!\n");
             }
         //Min cannot be negative
